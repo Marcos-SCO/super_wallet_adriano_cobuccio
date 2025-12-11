@@ -23,3 +23,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/wallet/transfer', [WalletController::class, 'transfer'])->name('wallet.transfer');
     Route::post('/wallet/transactions/{transaction}/reverse', [WalletController::class, 'reverse'])->name('wallet.reverse');
 });
+
+// Locale switcher
+Route::get('locale/{lang}', function ($lang) {
+    $available = ['en', 'pt'];
+    if (! in_array($lang, $available)) {
+        $lang = 'en';
+    }
+
+    session(['locale' => $lang]);
+
+    return redirect(url()->previous() ?: route('wallet.index'));
+    
+})->name('locale.switch');

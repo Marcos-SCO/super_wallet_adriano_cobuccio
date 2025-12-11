@@ -43,14 +43,14 @@
 
             @if ($tx->type !== TransactionType::DEPOSIT)
                 <div class="text-xs text-gray-500 mt-1">
-                    <p class="leading-tight">From: {{ $tx->sender->name }}</p>
-                    <p class="leading-tight">To: {{ $tx->receiver->name }}</p>
+                    <p class="leading-tight">{{ __('messages.from') }}: {{ $tx->sender->name }}</p>
+                    <p class="leading-tight">{{ __('messages.to') }}: {{ $tx->receiver->name }}</p>
                 </div>
             @endif
 
-            <div class="text-xs text-gray-500 mt-1">Message: {{ $tx->notes ?? 'N/A' }}</div>
+            <div class="text-xs text-gray-500 mt-1">{{ __('messages.message') }}: {{ $tx->notes ?? 'N/A' }}</div>
 
-            <div class="text-xs text-gray-400 mt-1">{{ $tx->created_at->diffForHumans() }} • Status: {{ $tx->status }}
+            <div class="text-xs text-gray-400 mt-1">{{ $tx->created_at->diffForHumans() }} • {{ __('messages.status') }}: {{ $tx->status }}
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
         @if ($tx->status->value === TransactionStatus::COMPLETED->value)
             <form method="POST" action="{{ route('wallet.reverse', $tx) }}">
                 @csrf
-                <button class="bg-red-500 text-white px-3 py-1 rounded text-sm">Reverse</button>
+                <button class="bg-red-500 text-white px-3 py-1 rounded text-sm">{{ __('messages.reverse') }}</button>
             </form>
         @else
             <div class="flex items-center space-x-2">

@@ -1,8 +1,8 @@
 <div class="bg-white p-4 rounded shadow overflow-y-auto">
-    <h3 class="font-semibold mb-3">Transactions</h3>
+    <h3 class="font-semibold mb-3">{{ __('messages.transactions') }}</h3>
 
     @if ($transactions->isEmpty())
-        <p class="text-gray-500">No transactions found.</p>
+        <p class="text-gray-500">{{ __('messages.no_transactions') }}</p>
     @endif
 
     @if (!$transactions->isEmpty())
