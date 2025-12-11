@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\WalletService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\MessageBag;
 
 class WalletController extends Controller
 {
@@ -47,9 +48,9 @@ class WalletController extends Controller
         $user = $request->user();
         $transactions = $this->getUserTransactions($user);
 
-        $userItems = User::where('id', '!=', $user->id)->get();
+        $listItems = User::where('id', '!=', $user->id)->get();
 
-        return view('wallet.dashboard', compact('user', 'userItems', 'transactions'));
+        return view('wallet.dashboard', compact('user', 'listItems', 'transactions'));
     }
 
     public function deposit(Request $request)
@@ -76,22 +77,26 @@ class WalletController extends Controller
             'amount' => 'required|numeric|min:0.01',
         ]);
 
-
         $receiver = User::findOrFail($request->receiver_id);
+
+        $errors = new MessageBag();
 
         try {
             $transaction = $this->walletService->transfer($request->user(), $receiver, (float)$request->amount, $request->notes ?? null);
         } catch (\Exception $e) {
-            return back()->withErrors(['amount' => $e->getMessage()])->withInput();
+
+            return redirect()->back()
+                ->withErrors(['amount' => $e->getMessage()])
+                ->withInput(); 
         }
 
-        if ($request->header('HX-Request')) {
-            $transactions = $this->getUserTransactions($request->user());
+        $user = $request->user();
+        $listItems = User::where('id', '!=', $user->id)->get();
 
-            return view('wallet.partials.transaction-list', compact('transactions'));
-        }
+        $transactions = $this->getUserTransactions($request->user());
 
-        return redirect()->back()->with('success', 'Transfer completed');
+        return view('wallet.dashboard', compact('user', 'listItems', 'transactions'))
+            ->with('success', 'Transfer completed');
     }
 
     // reverse transaction endpoint (admin or owner)
