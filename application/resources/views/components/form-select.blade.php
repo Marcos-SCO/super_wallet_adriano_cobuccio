@@ -1,0 +1,54 @@
+@props([
+    'label' => '',
+    'name',
+    'options' => [],
+    'value' => null,
+    'placeholder' => null,
+    'errorBag' => null,
+    'required' => false,
+])
+
+@php
+    $bag = $errorBag ? $errors->getBag($errorBag) : $errors;
+    $hasError = $bag->has($name);
+    $selectClasses = 'w-full border p-2 rounded mt-1';
+    if ($hasError) {
+        $selectClasses .= ' border-red-500';
+    }
+    $selected = old($name, $value);
+@endphp
+
+<div>
+    <label for="{{ $name }}" class="block text-gray-700">{{ $label }}</label>
+
+    <select name="{{ $name }}" id="{{ $name }}" @if($required) required @endif {{ $attributes->merge(['class' => $selectClasses]) }}>
+        @if($placeholder)
+            <option value="">{{ $placeholder }}</option>
+        @endif
+
+        @foreach($options as $optKey => $opt)
+            @php
+                if (is_array($opt)) {
+                    $optValue = $opt['id'] ?? $opt['value'] ?? $optKey;
+                    $optLabel = $opt['label'] ?? $opt['name'] ?? $optValue;
+                } elseif (is_object($opt)) {
+                    $optValue = $opt->id ?? $opt->value ?? $optKey;
+                    if (isset($opt->email) && isset($opt->name)) {
+                        $optLabel = $opt->name . ' (' . $opt->email . ')';
+                    } else {
+                        $optLabel = $opt->name ?? $opt->label ?? $optValue;
+                    }
+                } else {
+                    $optValue = $optKey;
+                    $optLabel = $opt;
+                }
+            @endphp
+
+            <option value="{{ $optValue }}" {{ (string)$optValue === (string)$selected ? 'selected' : '' }}>{{ $optLabel }}</option>
+        @endforeach
+    </select>
+
+    @if ($hasError)
+        <p class="text-red-500 text-sm mt-1">{{ $bag->first($name) }}</p>
+    @endif
+</div>

@@ -45,19 +45,7 @@
                 @csrf
 
                 <div>
-                    <label class="block">Receiver
-                        <select name="receiver_id" required class="w-full border p-2 rounded mt-1">
-                            <option value="">Select a user</option>
-                            @foreach ($listItems as $u)
-                                <option value="{{ $u->id }}" {{ old('receiver_id') == $u->id ? 'selected' : '' }}>
-                                    {{ $u->name }} ({{ $u->email }})
-                                </option>
-                            @endforeach
-                        </select>
-                    </label>
-                    @error('receiver_id')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <x-form-select label="Receiver" name="receiver_id" :options="$listItems" :value="old('receiver_id')" placeholder="Select a user" required />
                 </div>
 
                 <div>
