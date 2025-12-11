@@ -2,7 +2,7 @@
 
 return [
     'app_title' => 'Super Wallet App - Ardriano Cobuccio\'s Group',
-    
+
     'account' => 'Account',
     'hello' => 'Hello, :name',
     'balance' => 'Balance',
@@ -44,4 +44,17 @@ return [
     'all_rights_reserved' => 'All rights reserved',
 
     'walletService_balance_exception' => 'Insufficient balance',
+
+
+    'transaction_type' => [
+        'deposit' => 'Deposit',
+        'transfer' => 'Transfer',
+    ],
+    
+    'transaction_status' => [
+        'pending' => 'Pending',
+        'completed' => 'Completed',
+        'reversed' => 'Reversed',
+    ],
+
 ];

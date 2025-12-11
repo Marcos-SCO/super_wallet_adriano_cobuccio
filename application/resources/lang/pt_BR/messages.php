@@ -43,4 +43,14 @@ return [
     'all_rights_reserved' => 'Todos os direitos reservados',
 
     'walletService_balance_exception' => 'Saldo insuficiente',
+
+    'transaction_type' => [
+        'deposit' => 'Depósito',
+        'transfer' => 'Transferência',
+    ],
+    'transaction_status' => [
+        'pending' => 'Pendente',
+        'completed' => 'Concluída',
+        'reversed' => 'Estornada',
+    ],
 ];

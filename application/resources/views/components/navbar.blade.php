@@ -41,8 +41,8 @@
                         EN
                     </a>
                     <span class="text-blue-300">/</span>
-                    <a href="{{ route('locale.switch', 'pt') }}"
-                        class="text-xs font-semibold px-2 py-1 rounded transition {{ app()->getLocale() === 'pt' ? 'bg-white text-blue-600' : 'text-blue-100 hover:text-white hover:bg-blue-500' }}">
+                    <a href="{{ route('locale.switch', 'pt_BR') }}"
+                        class="text-xs font-semibold px-2 py-1 rounded transition {{ app()->getLocale() === 'pt_BR' ? 'bg-white text-blue-600' : 'text-blue-100 hover:text-white hover:bg-blue-500' }}">
                         PT
                     </a>
                 </div>

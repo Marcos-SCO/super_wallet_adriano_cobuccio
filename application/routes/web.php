@@ -26,7 +26,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Locale switcher
 Route::get('locale/{lang}', function ($lang) {
-    $available = ['en', 'pt'];
+    $available = ['en', 'pt_BR'];
+
     if (! in_array($lang, $available)) {
         $lang = 'en';
     }

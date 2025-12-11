@@ -28,18 +28,23 @@
 
     $itemClasses .= $itemClassesAdd;
     $badgeClasses .= $badgeClassesAdd;
+
+    $translatedTransactionType = __('messages.transaction_type.' . strtolower($tx->type->value));
+    $translatedTransactionStatus = __('messages.transaction_status.' . strtolower($tx->status->value));
 @endphp
 
 <li class="{{ $itemClasses }}">
     <div class="flex items-start space-x-3">
         <div
             class="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-700">
-            {{ Str::upper(Str::substr($tx->type->value, 0, 1)) }}
+            {{ Str::upper(Str::substr($translatedTransactionType, 0, 1)) }}
         </div>
 
         <div class="min-w-0">
-            <div class="text-sm font-medium text-gray-800">{{ Str::ucfirst($tx->type->value) }} —
-                ${{ number_format($tx->amount, 2) }}</div>
+            <div class="text-sm font-medium text-gray-800">
+                {{ Str::ucfirst($translatedTransactionType) }} —
+                ${{ number_format($tx->amount, 2) }}
+            </div>
 
             @if ($tx->type !== TransactionType::DEPOSIT)
                 <div class="text-xs text-gray-500 mt-1">
@@ -50,7 +55,8 @@
 
             <div class="text-xs text-gray-500 mt-1">{{ __('messages.message') }}: {{ $tx->notes ?? 'N/A' }}</div>
 
-            <div class="text-xs text-gray-400 mt-1">{{ $tx->created_at->diffForHumans() }} • {{ __('messages.status') }}: {{ $tx->status }}
+            <div class="text-xs text-gray-400 mt-1">{{ $tx->created_at->diffForHumans() }} •
+                {{ __('messages.status') }}: {{ $translatedTransactionStatus }}
             </div>
         </div>
     </div>
@@ -63,8 +69,8 @@
             </form>
         @else
             <div class="flex items-center space-x-2">
-                <span class="{{ $badgeClasses }}">{{ Str::ucfirst($tx->type->value) }}</span>
-                <span class="text-xs text-gray-500">{{ $tx->status }}</span>
+                <span class="{{ $badgeClasses }}">{{ Str::ucfirst($translatedTransactionType) }}</span>
+                <span class="text-xs text-gray-500">{{ $translatedTransactionStatus }}</span>
             </div>
         @endif
     </div>
