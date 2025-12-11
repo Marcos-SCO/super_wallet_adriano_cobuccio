@@ -8,13 +8,13 @@
         "watch": "cross-env NODE_ENV=development vite build --watch --minify false --emptyOutDir"
     },
     "devDependencies": {
-        "@tailwindcss/vite": "^4.0.0",
+        "@tailwindcss/vite": "^4.1.17",
         "axios": "^1.11.0",
         "concurrently": "^9.0.1",
         "cross-env": "^10.1.0",
         "laravel-vite-plugin": "^2.0.0",
         "sass": "^1.95.1",
-        "tailwindcss": "^4.0.0",
+        "tailwindcss": "^4.1.17",
         "vite": "^7.0.7"
     }
 }
