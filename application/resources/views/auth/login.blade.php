@@ -2,7 +2,10 @@
 
 @section('content')
     <form method="POST" action="{{ route('login') }}"
-        class="max-w-md mx-auto mt-12 space-y-6 bg-white p-6 rounded-lg shadow-sm border border-l-4 border-gray-200 hover:shadow transition">
+        class="max-w-md mx-auto mt-12 space-y-6 bg-white p-6 rounded-lg shadow-sm border border-l-4 border-gray-200 hover:shadow transition"
+
+        {{-- hx-post="{{ route('login') }}" hx-target="body" hx-swap="outerHTML" --}}
+        >
 
         @csrf
 
@@ -26,7 +29,8 @@
             </label>
         </div>
 
-        <button type="submit"
+        <button data-loading-message="{{ __('messages.loading') }}" data-regular-message="{{ __('messages.login') }}"
+            type="submit"
             class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition cursor-pointer">
             {{ __('messages.login') }}
         </button>

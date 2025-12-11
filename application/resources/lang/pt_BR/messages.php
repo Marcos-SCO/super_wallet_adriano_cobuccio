@@ -44,6 +44,8 @@ return [
 
     'walletService_balance_exception' => 'Saldo insuficiente',
 
+    'loading' => 'Carregando...',
+
     'transaction_type' => [
         'deposit' => 'Depósito',
         'transfer' => 'Transferência',

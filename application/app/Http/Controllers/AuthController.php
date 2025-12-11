@@ -52,7 +52,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('wallet');
+        return redirect()->intended('wallet');
     }
 
     public function logout(Request $request)

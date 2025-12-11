@@ -63,9 +63,15 @@
 
     <div class="flex flex-col items-end justify-between ml-4">
         @if ($tx->status->value === TransactionStatus::COMPLETED->value)
-            <form method="POST" action="{{ route('wallet.reverse', $tx) }}">
+            <form method="POST" action="{{ route('wallet.reverse', $tx) }}"
+                hx-post="{{ route('wallet.reverse', $tx) }}" hx-target="body" hx-swap="outerHTML">
+
                 @csrf
-                <button class="bg-red-500 text-white px-3 py-1 rounded text-sm">{{ __('messages.reverse') }}</button>
+
+                <button
+                data-loading-message="{{ __('messages.loading') }}"
+                data-regular-message="{{ __('messages.reverse') }}"
+                    class="bg-red-500 text-white px-3 py-1 rounded text-sm cursor-pointer">{{ __('messages.reverse') }}</button>
             </form>
         @else
             <div class="flex items-center space-x-2">

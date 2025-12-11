@@ -45,12 +45,13 @@ return [
 
     'walletService_balance_exception' => 'Insufficient balance',
 
+    'loading' => 'Loading...',
 
     'transaction_type' => [
         'deposit' => 'Deposit',
         'transfer' => 'Transfer',
     ],
-    
+
     'transaction_status' => [
         'pending' => 'Pending',
         'completed' => 'Completed',
