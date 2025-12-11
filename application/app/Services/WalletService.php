@@ -51,7 +51,7 @@ class WalletService
             $sender->refresh();
 
             if (round($sender->balance, 2) < $amount) {
-                throw new \Exception('Insufficient balance');
+                throw new \Exception(__('messages.walletService_balance_exception'));
             }
 
             // This is how money from free software change hands

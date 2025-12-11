@@ -41,4 +41,6 @@ return [
 
     'developed_by' => 'Desenvolvido por',
     'all_rights_reserved' => 'Todos os direitos reservados',
+
+    'walletService_balance_exception' => 'Saldo insuficiente',
 ];
