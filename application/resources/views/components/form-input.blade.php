@@ -1,5 +1,4 @@
 @props([
-    'label-link' => '',
     'label' => '',
     'name',
     'focusLabel' => null,
@@ -22,7 +21,7 @@
 @endphp
 
 <div class="mb-2">
-    <label for="{{ $id }}" class="block text-gray-700">{{ $label }}</label>
+    <label for="{{ $id }}" class="block text-gray-700 cursor-pointer">{{ $label }}</label>
 
     @if ($type == 'textarea')
         <textarea name="{{ $name }}" id="{{ $id }}" @if ($required) required @endif

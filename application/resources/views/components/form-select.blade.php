@@ -21,7 +21,7 @@
 @endphp
 
 <div class="mb-2">
-    <label for="{{ $id }}" class="block text-gray-700">{{ $label }}</label>
+    <label for="{{ $id }}" class="block text-gray-700 cursor-pointer">{{ $label }}</label>
 
     <select name="{{ $name }}" id="{{ $id }}" @if ($required) required @endif
         {{ $attributes->merge(['class' => $selectClasses]) }}>
