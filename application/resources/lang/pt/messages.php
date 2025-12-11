@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'app_title' => 'Aplicativo Wallet - Grupo Adriano Cobuccio',
-    'brand' => 'Carteira',
+    'app_title' => 'Super Wallet - Grupo Adriano Cobuccio',
     'account' => 'Conta',
     'hello' => 'Olá, :name',
     'balance' => 'Saldo',
@@ -39,4 +38,7 @@ return [
     'already_have_account' => 'Já tem uma conta? :link',
     'remember_me' => 'Lembrar-me',
     'dont_have_account' => 'Não tem uma conta? :link',
+
+    'developed_by' => 'Desenvolvido por',
+    'all_rights_reserved' => 'Todos os direitos reservados',
 ];

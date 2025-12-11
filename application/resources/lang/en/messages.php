@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'app_title' => 'Wallet App - Grupo Ardriano Cobuccio',
-    'brand' => 'Wallet',
+    'app_title' => 'Super Wallet App - Ardriano Cobuccio\'s Group',
+    
     'account' => 'Account',
     'hello' => 'Hello, :name',
     'balance' => 'Balance',
@@ -39,4 +39,7 @@ return [
     'already_have_account' => 'Already have an account? :link',
     'remember_me' => 'Remember me',
     'dont_have_account' => 'Don\'t have an account? :link',
+
+    'developed_by' => 'Developed by',
+    'all_rights_reserved' => 'All rights reserved',
 ];
