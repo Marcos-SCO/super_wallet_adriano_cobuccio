@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - main
+
+name: 🚀 Deploy website on push
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    environment: super_wallet
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: application
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 🧰 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "24.11.0"
+
+      - name: 🧹 Clean old build
+        run: rm -rf application/public/build
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔨 Build assets
+        run: npm run build
+
+      - name: 📂 Upload `public/build` via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.SERVER_DIR }}
+          local-dir: application
